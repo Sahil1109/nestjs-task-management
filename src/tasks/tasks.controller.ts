@@ -6,6 +6,8 @@ import {
   Param,
   Delete,
   Patch,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task, TaskStatus } from './task.model';
@@ -27,6 +29,7 @@ export class TasksController {
 
   // Way 2
   @Post()
+  @UsePipes(ValidationPipe)
   createTasks(@Body() createTaskDto: CreateTaskDto) {
     return this.taskService.createTasks(createTaskDto);
   }
